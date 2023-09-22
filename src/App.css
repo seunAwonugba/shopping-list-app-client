@@ -1,0 +1,89 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    letter-spacing: var(--letterSpacing);
+}
+
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+:root {
+    /* COLORS  */
+    /* primary */
+    --primary-50: #d8d6ff;
+    --primary-100: #c1beff;
+    /* main */
+    --primary-500: #645cff;
+    --primary-700: #4640b3;
+    /* grey */
+    --grey-50: #f2f4f8;
+    --grey-300: #dbe0ea;
+    --grey-600: #adb3bf;
+    --grey-1000: #333538;
+
+    /* rest */
+    --black: #222;
+    --white: #fff;
+    --red-light: #f8d7da;
+    --red-dark: #842029;
+    --green-light: #d1e7dd;
+    --green-dark: #0f5132;
+
+    /* typography */
+    --headingFont: "Inconsolata", monospace;
+    --bodyFont: "Montserrat", sans-serif;
+    --smallText: 0.7em;
+    /* rest */
+    --backgroundColor: var(--grey-50);
+    --textColor: var(--grey-1000);
+    --borderRadius: 0.25rem;
+    --letterSpacing: 1px;
+    --transition: 0.3s ease-in-out all;
+    --max-width: 1120px;
+    --fixed-width: 600px;
+    /* box shadows */
+    --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
