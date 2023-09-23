@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import bgImage from "../Image/imag1.jpg";
+import success from "../Image/successIcon.svg";
+import { useNavigate } from "react-router-dom";
+import Modal from "./Modal";
 const CreateAcct = () => {
   const [error, setError] = useState("");
+  const history = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -33,8 +37,18 @@ const CreateAcct = () => {
       confirmPassword: '',
     });
     setError("");
+   setShowModal(true)
+  };
+
+  const goToLogin =()=>{
+    history('/login')
+  }
+  const [showModal, setShowModal] = React.useState(false);
+  const closeModal = () => {
+    setShowModal(false);
   };
   return (
+    <Fragment>
     <div
       className="h-auto w-auto bg-cover bg-center bg-no-repeat overflow-hidden bg-[#D8D8E4]"
       style={{
@@ -115,7 +129,7 @@ const CreateAcct = () => {
               <div className="flex items-center justify-center mt-6">
               <button
                 type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 "
+                className="bg-[#669F2A] text-white px-4 py-2 rounded-lg hover:bg-green-700 "
               >
                 Create Account
               </button>
@@ -126,6 +140,40 @@ const CreateAcct = () => {
         </div>
       </div>
     </div>
+    <Modal isVisible={showModal} onClose={() => closeModal()}>
+        <div className="p-4 flex justify-between flex-col items-center">
+          <img
+            src={success}
+            alt="error&Success"
+            width="92px"
+            height="92px"
+            className="max-w-[100%]"
+          />
+          <h5 className="text-2xl font-semibold max-w-[456px] text-center sm:mt-3">
+            Account Created 
+          </h5>
+          <p className="text-base font-normal max-w-[456px] text-center mt-2 sm:mb-4">
+            Congratulations! You have successfully created an account.
+          </p>
+          
+          <button onClick={goToLogin}
+            className="w-full mb-4 h-auto flex items-center text-center 
+            justify-center gap-3 py-3  md:py-4 md:px-4 px-4 text-base
+            sm:max-w-[456px] bg-[#669F2A] text-[#E6EFFD] rounded-full mt-2"
+          >
+            <span className="font-semibold text-base text-[#FFFFFF]">Proceed to Login </span>
+          </button>
+          <button
+              onClick={() => closeModal()}
+              className="w-full mb-4 h-auto flex items-center text-center 
+            justify-center gap-3 py-3  md:py-4 md:px-4 px-4 text-base
+            sm:max-w-[456px] bg-none text-[#669F2A] rounded-full mt-2"
+            >
+              <span className="font-semibold text-base">Not now</span>
+            </button>
+        </div>
+      </Modal>
+      </Fragment>
   );
 };
 
