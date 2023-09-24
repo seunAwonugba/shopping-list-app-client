@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import "./App.css";
 import CreateAcctPage from './Components/pages/CreateAccountPage';
-import { UserContextProvider } from './Components/SupportUtils/UserContext';
+// import { UserContextProvider } from './Components/*SupportUtils/UserContext';
 import Layout from "./Components/layout/Layout";
 import IndexPage from './Components/pages/IndexPage';
 import LoginPage from './Components/pages/LoginPage';
