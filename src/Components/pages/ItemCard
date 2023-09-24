@@ -1,0 +1,19 @@
+
+
+const ItemCard = () => {
+
+    return (
+        <div className="flex">
+            <div>
+                <img className="max-w max-h object-cover" src="" alt="" />
+            </div>
+            <div>
+                <h2>Name</h2>
+                <p> Notes here</p>
+            </div>
+        </div>
+    )
+}
+
+
+export default ItemCard;
