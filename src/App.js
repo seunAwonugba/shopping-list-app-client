@@ -1,15 +1,28 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
+import { Route, Routes } from 'react-router-dom';
 import "./App.css";
-import CreateAcctPage from './pages/Auth/CreateAcctPage';
+import CreateAcctPage from './Components/pages/CreateAccountPage';
+import { UserContextProvider } from './Components/SupportUtils/UserContext';
+import Layout from "./Components/layout/Layout";
+import IndexPage from './Components/pages/IndexPage';
+import LoginPage from './Components/pages/LoginPage';
+import UserAccountPage from './Components/pages/UserAccountPage';
+import UserShoppingListPage from './Components/pages/UserShoppingListPage';
+
 
 function App() {
-    return(
-        <BrowserRouter>
+    return (
+        
+        <UserContextProvider>
             <Routes>
-            <Route path="/" element={<CreateAcctPage/>} />
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<IndexPage />} />
+                    <Route path="/register" element={<CreateAcctPage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/account" element={<UserAccountPage />} />
+                    <Route path="/account/lists" element={<UserShoppingListPage /> } />    
+                </Route>
             </Routes>
-        </BrowserRouter>
+        </UserContextProvider> 
     )
 }
 

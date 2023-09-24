@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import bgImage from "../Image/imag1.jpg";
-const CreateAcct = () => {
+import bgImage from "../../assets/images/imag1.jpg"
+
+const CreateAcctPage = () => {
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
@@ -129,4 +130,4 @@ const CreateAcct = () => {
   );
 };
 
-export default CreateAcct;
+export default CreateAcctPage;
