@@ -1,10 +1,20 @@
-
+import { TestData } from "./DataSample";
+import ItemCard from "./ItemCard.jsx";
 
 const ItemsList = () => {
 
     return (
         <div>
-            Render Lists Here with Map and data from database
+            {
+                TestData && TestData.map((item) => (
+                    <ItemCard 
+                        key={item.id}
+                        name={item.name}
+                        quantity={item.quantity}
+                        notes={item.notes}
+                    />
+                ))
+            }
         </div>
     )
 
