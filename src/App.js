@@ -12,7 +12,7 @@ import UserShoppingListPage from './Components/pages/UserShoppingListPage';
 function App() {
     return (
         
-        <UserContextProvider>
+
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<IndexPage />} />
@@ -22,7 +22,7 @@ function App() {
                     <Route path="/account/lists" element={<UserShoppingListPage /> } />    
                 </Route>
             </Routes>
-        </UserContextProvider> 
+       
     )
 }
 
