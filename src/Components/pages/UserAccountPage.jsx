@@ -15,7 +15,7 @@ const UserAccountPage = () => {
 
     return (
 
-        <div className="m-10 items-centercontainer grid grid-cols-2 gap-3">
+        <div className="mt-6 gap-8 justify-between grid grid-cols-1 md:grid-cols-[1fr_2fr]">
             <ItemsForm />
             <ItemsList />
         </div>
