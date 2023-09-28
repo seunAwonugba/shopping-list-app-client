@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import bgImage from "../../assets/images/imag1.jpg"
+import success from "../../assets/images/successIcon.svg"
 import service from "../../baseURL";
+import { useNavigate } from "react-router";
+import Modal from "../SupportUtils/Modal";
 
 const CreateAcctPage = () => {
   const [error, setError] = useState("");
@@ -11,6 +14,7 @@ const CreateAcctPage = () => {
     password: "",
     confirmPassword: "",
   });
+  const history = useNavigate();
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -18,7 +22,13 @@ const CreateAcctPage = () => {
       [name]: value,
     });
   };
-
+  const goToLogin =()=>{
+    history('/login')
+  }
+  const [showModal, setShowModal] = React.useState(false);
+  const closeModal = () => {
+    setShowModal(false);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -28,7 +38,6 @@ const CreateAcctPage = () => {
     }
 
     try {
-      // const response = await baseurl.post('/user/sign-up,')
       const response = await service.post("/user/sign-up", {
         firstName: formData.firstName,
         lastName: formData.lastName,
@@ -38,7 +47,7 @@ const CreateAcctPage = () => {
       });
       console.log(response.data);
     } catch (e) {
-      //   alert("Item creation failed. ");
+     
       console.log(e);
     }
      // Reset form data after successful submission
@@ -50,8 +59,10 @@ const CreateAcctPage = () => {
       confirmPassword: '',
     });
     setError("");
+    setShowModal(true)
   };
   return (
+    <Fragment>
     <div
       className="h-auto w-auto bg-cover bg-center bg-no-repeat overflow-hidden bg-[#D8D8E4]"
       style={{
@@ -143,6 +154,40 @@ const CreateAcctPage = () => {
         </div>
       </div>
     </div>
+    <Modal isVisible={showModal} onClose={() => closeModal()}>
+        <div className="p-4 flex justify-between flex-col items-center">
+          <img
+            src={success}
+            alt="error&Success"
+            width="92px"
+            height="92px"
+            className="max-w-[100%]"
+          />
+          <h5 className="text-2xl font-semibold max-w-[456px] text-center sm:mt-3">
+            Account Created 
+          </h5>
+          <p className="text-base font-normal max-w-[456px] text-center mt-2 sm:mb-4">
+            Congratulations! You have successfully created an account.
+          </p>
+          
+          <button onClick={goToLogin}
+            className="w-full mb-4 h-auto flex items-center text-center 
+            justify-center gap-3 py-3  md:py-4 md:px-4 px-4 text-base
+            sm:max-w-[456px] bg-[#669F2A] text-[#E6EFFD] rounded-full mt-2"
+          >
+            <span className="font-semibold text-base text-[#FFFFFF]">Proceed to Login </span>
+          </button>
+          <button
+              onClick={() => closeModal()}
+              className="w-full mb-4 h-auto flex items-center text-center 
+            justify-center gap-3 py-3  md:py-4 md:px-4 px-4 text-base
+            sm:max-w-[456px] bg-none text-[#669F2A] rounded-full mt-2"
+            >
+              <span className="font-semibold text-base">Not now</span>
+            </button>
+        </div>
+      </Modal>
+    </Fragment>
   );
 };
 
