@@ -1,49 +1,123 @@
-
-import testImg from '../../assets/images/trouser.jpg'
+import React, { useState } from "react";
+import testImg from "../../assets/images/trouser.jpg";
+import service from "../../baseURL";
+import EditModal from '../SupportUtils/EditModal';
 
 const ItemCard = (props) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
-
-    const itemEditHandler = () => {
-        // code here
+  const itemEditHandler = async () => {
+    try {
+      const response = await service.patch(`/items/update-item/${props.itemId}`, {
+        ...editedItem,
+      });
+      console.log(response.data);
+      setModalOpen(true);
+      setIsEditing(true);
+    } catch (e) {
+      console.log(e);
     }
+  };
 
+  const openModal = () => {
+    setModalOpen(true);
+  };
 
-    const itemDeleteHandler = () => {
-        //code here
-    }
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
-    return (
-        <div className='max-h-screen '>
-        <div className="flex gap-4 mt-4">
-            <div>
-                <img className="w-32 h-32 object-cover rounded-2xl" src={testImg} alt="" />
-            </div>
-            <div className='h-40 gap-1 max-w-xs'>
-                <div className="flex  justify-between">
-                    <h2 className="font-bold text-2xl">{props.name}</h2>
-                    <p className="py-1 px-2 rounded-xl bg-gray-200 text-gray-500 text-sm">{props.quantity} items</p>
-                </div>
-                <p className='w-80'> {props.notes}</p>
-                <div className='mt-8 gap-2 flex justify-between'>
-                    <button onClick={itemEditHandler} className='flex px-4 py-3 bg-gray-100'>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                        </svg>
-                        Edit
-                    </button>
-                    <button onClick = {itemDeleteHandler} className='flex px-4 py-3 bg-red-200 rounded-full'>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                        </svg>
-                        Delete
-                    </button>
-                </div>
-            </div>
+  const saveChanges = (editedItem) => {
+    // Handle saving changes to the server
+    setModalOpen(false);
+    setIsEditing(false);
+  };
+
+  const [editedItem, setEditedItem] = useState({
+    name: props.name,
+    quantity: props.quantity,
+    notes: props.notes,
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedItem((prev) => ({ ...prev, [name]: value }));
+  };
+
+  return (
+    <div className="max-h-screen">
+      <div className="flex gap-4 mt-4">
+        <div>
+          <img
+            className="w-32 h-32 object-cover rounded-2xl"
+            src={testImg}
+            alt=""
+          />
         </div>
+        <div className="h-40 gap-1 max-w-xs">
+          <div className="flex justify-between">
+            {isEditing ? (
+              <input
+                type="text"
+                name="name"
+                value={editedItem.name}
+                onChange={handleInputChange}
+                className="font-bold text-2xl"
+              />
+            ) : (
+              <h2 className="font-bold text-2xl">{props.name}</h2>
+            )}
+            <p className="py-1 px-2 rounded-xl bg-gray-200 text-gray-500 text-sm">
+              {props.quantity} items
+            </p>
+          </div>
+          <p className="w-80">
+            {isEditing ? (
+              <input
+                type="text"
+                name="notes"
+                value={editedItem.notes}
+                onChange={handleInputChange}
+              />
+            ) : (
+              props.notes
+            )}
+          </p>
+          <div className="mt-8 gap-2 flex justify-between">
+            {isEditing ? (
+              <button onClick={itemEditHandler} className="flex px-4 py-3 bg-gray-100">
+                Save
+              </button>
+            ) : (
+              <button onClick={() => setIsEditing(true)} className="flex px-4 py-3 bg-gray-100">
+                Edit
+              </button>
+            )}
+            <button onClick={''} className="flex px-4 py-3 bg-red-200 rounded-full">
+              Delete
+            </button>
+          </div>
         </div>
-    )
-}
+      </div>
 
+      {/* Render the EditModal component */}
+      
+            <EditModal
+        isOpen={openModal}
+        onClose={closeModal}
+        onSave={saveChanges}
+        currentItem={{
+          name: props.name,
+          quantity: props.quantity,
+          notes: props.notes,
+        }}
+      />
+      
+    
+      
+    </div>
+  );
+};
 
 export default ItemCard;
