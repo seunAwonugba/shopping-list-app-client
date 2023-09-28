@@ -6,10 +6,9 @@ const IndexPage = () => {
 
     return (
 
-
-        <section class=" max-h-screen text-gray-600 body-font">
-            <div class="container mx-auto flex px-5 py-15 md:flex-row flex-col items-center">
-                <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+        <section className=" max-h-screen text-gray-600 body-font">
+            <div className="container mx-auto flex px-5 py-15 md:flex-row flex-col items-center">
+                <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
                     <div className="max-h-screen rounded-full">
                         <img className="object-cover object-center rounded" alt="hero" src={shoppingImage} />
                     </div>
