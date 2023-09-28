@@ -1,4 +1,5 @@
 import { useState } from "react";
+import service from "../../baseURL";
 // import testImg from '../../assets/images/trouser.jpg'
 // import axios from "axios";
 // import baseurl from "../../baseURL";
@@ -14,21 +15,26 @@ const ItemsForm = () => {
 
   async function createShoppingItem(event) {
     event.preventDefault();
-    // console.log(baseurl)
-    // try {
-    //   // const response = await baseurl.post('/user/sign-up,')
-    //   const response = await service.post("/user/sign-up", {
-    //     firstName: "Fatimah",
-    //     lastName: "Shalewa",
-    //     email: "kkjjj@gmail.com",
-    //     password: "Ayodele",
-    //     phoneNumber: "1234567",
-    //   });
-    //   console.log(response.data);
-    // } catch (e) {
-    //   //   alert("Item creation failed. ");
-    //   console.log(e);
-    // }
+  
+    try {
+      // const response = await baseurl.post('/user/sign-up,')
+      const response = await service.post("/items/create-item", {
+        name: itemName,
+        quantity: quantity,
+        notes: notes,
+        
+      });
+      console.log(response.data);
+     
+        
+     
+    } catch (e) {
+      //   alert("Item creation failed. ");
+      console.log(e);
+    }
+        setItemName('')
+        setNotes('')
+        setQuantity('')
   }
   //   createShoppingItem();
   return (
