@@ -4,7 +4,7 @@ import ItemCard from "./ItemCard.jsx";
 const ItemsList = () => {
 
     return (
-        <div className="md:ml-4 ">
+        <div className="h-full md:ml-4 ">
             {
                 TestData && TestData.map((item) => (
                     <div className="border-b-[#F6F8FA] border-b-2 pb-4">

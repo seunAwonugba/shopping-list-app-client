@@ -14,8 +14,8 @@ const UserAccountPage = () => {
     // display list on side with user 
 
     return (
-        <div className="w-full flex items-center justify-center h-auto">
-        <div className="mt-6 gap-8 justify-between grid grid-cols-1 md:grid-cols-[1fr_2fr]">
+        <div className="h-screen w-full flex items-center justify-center h-auto">
+        <div className="h-full mt-6 gap-8 justify-between grid grid-cols-1 md:grid-cols-[1fr_2fr]">
             <ItemsForm />
             <ItemsList />
         </div>

@@ -14,18 +14,18 @@ const ItemCard = (props) => {
     }
 
     return (
-        <div className='max-h-screen '>
+        <div className='shrink'>
         <div className="flex gap-4 mt-4">
-            <div>
-                <img className="w-32 h-32 object-cover rounded-2xl" src={testImg} alt="" />
+            <div className=''>
+                <img className="w-48 h-49 object-cover rounded-2xl" src={testImg} alt="" />
             </div>
-            <div className='h-40 gap-1 max-w-xs'>
-                <div className="flex  justify-between">
+            <div className='h-full w-full gap-1 max-w-xs'>
+                <div className="flex justify-between">
                     <h2 className="font-bold text-2xl">{props.name}</h2>
                     <p className="py-1 px-2 rounded-xl bg-gray-200 text-gray-500 text-sm">{props.quantity} items</p>
                 </div>
-                <p className='w-80'> {props.notes}</p>
-                <div className='mt-8 gap-2 flex justify-between'>
+                <p className='w-80 sm:truncate'> {props.notes}</p>
+                <div className='mt-8 gap-2 flex justify-between shrink'>
                     <button onClick={itemEditHandler} className='flex px-4 py-3 bg-gray-100'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
