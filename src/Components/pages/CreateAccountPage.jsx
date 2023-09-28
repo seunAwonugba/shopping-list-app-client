@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import bgImage from "../../assets/images/imag1.jpg"
+import service from "../../baseURL";
 
 const CreateAcctPage = () => {
   const [error, setError] = useState("");
@@ -18,12 +19,27 @@ const CreateAcctPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match");
       return;
+    }
+
+    try {
+      // const response = await baseurl.post('/user/sign-up,')
+      const response = await service.post("/user/sign-up", {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        password: formData.password,
+        
+      });
+      console.log(response.data);
+    } catch (e) {
+      //   alert("Item creation failed. ");
+      console.log(e);
     }
      // Reset form data after successful submission
      setFormData({

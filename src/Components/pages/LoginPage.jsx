@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import fun from '../../assets/images/fun.jpg'
 
 const LoginPage = () => {
 
@@ -11,18 +11,15 @@ const LoginPage = () => {
 
     return (
     <section className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto flex flex-wrap items-center">
-            <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
+        <div className="container px-5 py-24 mx-auto flex flex-col sm:flex-row flex-wrap items-center ">
+            <div className="flex flex-col flex-1">
                 <h1 className="title-font font-medium text-3xl text-gray-900">
-                    Welcome to the Login Page. 
+                    Welcome, Login to shop ... 
                 </h1>
-                <p class="leading-relaxed mt-4">
-                    Please provide the details you used to register on the platform
-                    to login in into your account. We wish you a great experience
-                    on the platform
-                </p>
+                
+                <img src={fun} alt="" className="max-w-full w-[450px]"/>
             </div>
-            <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+            <div className="flex-1 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
                 <h2 className="text-gray-900 text-lg font-medium title-font mb-5">Login</h2>
                 <form onSubmit={handleLoginSubmit}>
                     <div className="relative mb-4">
