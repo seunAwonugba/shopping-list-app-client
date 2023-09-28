@@ -14,6 +14,7 @@ const ItemCard = (props) => {
     }
 
     return (
+        <div className='max-h-screen '>
         <div className="flex gap-4 mt-4">
             <div>
                 <img className="w-32 h-32 object-cover rounded-2xl" src={testImg} alt="" />
@@ -39,6 +40,7 @@ const ItemCard = (props) => {
                     </button>
                 </div>
             </div>
+        </div>
         </div>
     )
 }
