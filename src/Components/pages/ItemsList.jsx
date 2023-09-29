@@ -26,26 +26,7 @@ const ItemsList = () => {
         }
     },[getItems])
 
-    // useEffect(() => {
-    //     const getItems = async () => {
-    //         try {
-    //             const response = await service.get("items/get-items",{
-                    
-    //             });
-    //             console.log(response);
-    //             setGetItems(response)
-    //         } catch (error) {
-                
-    //             console.log(error.response.data.data);
-    //         }
-    //     };
-        
-    //     getItems();
-        
-    // }, []);
-    // // console.log({getItems})
-
-
+    
 
     // We pass the data via props
     const editedDataHandler = () => {
