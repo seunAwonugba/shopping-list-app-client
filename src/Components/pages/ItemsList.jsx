@@ -5,19 +5,36 @@ import service from "../../baseURL";
 const ItemsList = () => {
 
   const [getItems, setGetItems] = useState([]);
+  useEffect(()=>{
+    const getItems = setTimeout(async() => {
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const response = await service.get("items/get-items", {});
-        setGetItems(response);
-      } catch (error) {
-        console.log(error.response.data.data);
-      }
-    };
+        try {
+            const response = await service.get("items/get-items",{});
+            // console.log(response)
+            setGetItems(response)
 
-    fetchItems();
-  }, []);
+        } catch (error) {
+            console.log(error.response.data.data);
+        }
+
+    },500);
+
+    return () => {
+        clearTimeout(getItems)
+    }
+},[getItems])
+  // useEffect(() => {
+  //   const fetchItems = async () => {
+  //     try {
+  //       const response = await service.get("items/get-items", {});
+  //       setGetItems(response);
+  //     } catch (error) {
+  //       console.log(error.response.data.data);
+  //     }
+  //   };
+
+  //   fetchItems();
+  // }, []);
 
   // Setting up a delete Handler
   const deleteItemHandler = async (id) => {
