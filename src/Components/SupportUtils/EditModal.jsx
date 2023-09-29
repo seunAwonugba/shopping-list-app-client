@@ -14,7 +14,10 @@ const EditModal = ({ isOpen, onClose, onSave, currentItem }) => {
         <div className="modal-content">
           <div className="modal-header border-b pb-2 mb-4 flex justify-between items-center">
             <h5 className="modal-title text-xl font-bold">Edit Item</h5>
-            <button type="button" className="text-red-500 hover:text-red-700" onClick={onClose}>Close</button>
+            <button 
+              type="button" 
+              className="text-red-500 hover:text-red-700"
+              onClick={onClose}>Close</button>
           </div>
           <div className="modal-body">
             <div className="mb-4">
@@ -52,8 +55,14 @@ const EditModal = ({ isOpen, onClose, onSave, currentItem }) => {
             </div>
           </div>
           <div className="modal-footer border-t pt-2 mt-4 flex justify-end">
-            <button type="button" className="btn bg-gray-200 text-gray-700 hover:bg-gray-300" onClick={onClose}>Close</button>
-            <button type="button" className="btn bg-blue-500 text-white hover:bg-blue-700 ml-2" onClick={() => onSave(editedItem)}>Save changes</button>
+            <button 
+              type="button" 
+              className="btn bg-gray-200 text-gray-700 hover:bg-gray-300" 
+              onClick={onClose}>Close</button>
+            <button 
+              type="button" 
+              className="btn bg-blue-500 text-white hover:bg-blue-700 ml-2" 
+              onClick={() => onSave(editedItem)}>Save changes</button>
           </div>
         </div>
       </div>

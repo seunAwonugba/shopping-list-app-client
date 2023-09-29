@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import testImg from "../../assets/images/trouser.jpg";
 import service from "../../baseURL";
 import EditModal from '../SupportUtils/EditModal';
@@ -7,18 +7,20 @@ const ItemCard = (props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const itemEditHandler = async () => {
+
+  const itemEditHandler = async() => {
     try {
-      const response = await service.patch(`/items/update-item/${props.itemId}`, {
-        ...editedItem,
-      });
-      console.log(response.data);
-      setModalOpen(true);
-      setIsEditing(true);
-    } catch (e) {
-      console.log(e);
+      const response = await service.patch(`/items/update-item/${props.itemId}`, {...editedItem})
+      // console.log('**** New Response ****')
+      // console.log(response.data)
+      setModalOpen(false)
+      setIsEditing(false)
+
+    } catch(error) {
+      console.log(error)
     }
-  };
+  }
+
 
   const openModal = () => {
     setModalOpen(true);
@@ -44,6 +46,25 @@ const ItemCard = (props) => {
     const { name, value } = e.target;
     setEditedItem((prev) => ({ ...prev, [name]: value }));
   };
+
+
+  if(isEditing){
+    return (
+      <EditModal
+        isOpen={openModal}
+        onClose={closeModal}
+        onSave={saveChanges}
+        currentItem={
+          {
+            name: props.name,
+            quantity: props.quantity,
+            notes: props.notes
+          }
+        }
+       />
+    )
+  }
+
 
   return (
     <div className="max-h-screen">
@@ -86,36 +107,26 @@ const ItemCard = (props) => {
           </p>
           <div className="mt-8 gap-2 flex justify-between">
             {isEditing ? (
-              <button onClick={itemEditHandler} className="flex px-4 py-3 bg-gray-100">
+              <button 
+                onClick={itemEditHandler} 
+                className="flex px-4 py-3 bg-gray-100">
                 Save
               </button>
             ) : (
-              <button onClick={() => setIsEditing(true)} className="flex px-4 py-3 bg-gray-100">
+              <button 
+                onClick={() => setIsEditing(true)} 
+                className="flex px-4 py-3 bg-gray-100">
                 Edit
               </button>
             )}
-            <button onClick={''} className="flex px-4 py-3 bg-red-200 rounded-full">
+            <button
+              onClick= {props.ondelete}
+              className="flex px-4 py-3 bg-red-200 rounded-full">
               Delete
             </button>
           </div>
         </div>
-      </div>
-
-      {/* Render the EditModal component */}
-      
-            <EditModal
-        isOpen={openModal}
-        onClose={closeModal}
-        onSave={saveChanges}
-        currentItem={{
-          name: props.name,
-          quantity: props.quantity,
-          notes: props.notes,
-        }}
-      />
-      
-    
-      
+      </div>      
     </div>
   );
 };

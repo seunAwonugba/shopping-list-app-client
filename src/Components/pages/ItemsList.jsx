@@ -5,20 +5,6 @@ import service from "../../baseURL";
 const ItemsList = () => {
     const [getItems,setGetItems]=useState([])
     
-    // useEffect(()=>{
-    //     try {
-    //         const response = await service.get("/user/sign-up", {
-    //             name: itemName,
-    //             quantity: quantity,
-    //             notes: notes,
-              
-    //         });
-    //         console.log(response.data);
-    //       } catch (e) {
-           
-    //         console.log(e);
-    //       }
-    // })
     useEffect(() => {
         const getItems = async () => {
             try {
@@ -36,17 +22,40 @@ const ItemsList = () => {
         getItems();
         
     }, []);
-    console.log({getItems})
+    // console.log({getItems})
+
+
+
+    // We pass the data via props
+    
+    // Setting up a delete Handler
+
+    const deleteItemHandler = (itemName) => {
+        console.log(itemName)
+
+        try {
+            service.get("items/delete-item/:id",{}).then(
+                () => {
+                    const newList = getItems.filter((el) => el.itemName !== itemName)
+                    setGetItems(newList);
+                }
+            )
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+
     return (
         <div className="md:ml-4 ">
             {
                 getItems.data?.data?.length > 0 && getItems.data?.data?.map((item) => (
-                    <div className="border-b-[#F6F8FA] border-b-2 pb-4">
+                    <div className="border-b-[#F6F8FA] border-b-2 pb-4" key={item.id}>
                     <ItemCard 
-                        key={item.id}
                         name={item.name}
                         quantity={item.quantity}
                         notes={item.notes}
+                        ondelete={deleteItemHandler}
                     />
                     </div>
                 ))
