@@ -5,24 +5,45 @@ import service from "../../baseURL";
 const ItemsList = () => {
     const [getItems,setGetItems]=useState([])
     
-    useEffect(() => {
-        const getItems = async () => {
+
+
+    useEffect(()=>{
+        const getItems = setTimeout(async() => {
+
             try {
-                const response = await service.get("items/get-items",{
-                    
-                });
-                console.log(response);
+                const response = await service.get("items/get-items",{});
+                // console.log(response)
                 setGetItems(response)
+
             } catch (error) {
-                
                 console.log(error.response.data.data);
             }
-        };
+
+        },500);
+
+        return () => {
+            clearTimeout(getItems)
+        }
+    },[getItems])
+
+    // useEffect(() => {
+    //     const getItems = async () => {
+    //         try {
+    //             const response = await service.get("items/get-items",{
+                    
+    //             });
+    //             console.log(response);
+    //             setGetItems(response)
+    //         } catch (error) {
+                
+    //             console.log(error.response.data.data);
+    //         }
+    //     };
         
-        getItems();
+    //     getItems();
         
-    }, []);
-    // console.log({getItems})
+    // }, []);
+    // // console.log({getItems})
 
 
 
