@@ -3,6 +3,7 @@ import ItemCard from "./ItemCard.jsx";
 import service from "../../baseURL";
 
 const ItemsList = () => {
+
   const [getItems, setGetItems] = useState([]);
 
   useEffect(() => {
