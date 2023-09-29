@@ -27,21 +27,33 @@ const ItemsList = () => {
 
 
     // We pass the data via props
-    
+    const editedDataHandler = () => {
+
+    }
+
+
+
     // Setting up a delete Handler
+    const deleteItemHandler = async(id) => {
+        // ev.preventDefault();
 
-    const deleteItemHandler = (itemName) => {
-        console.log(itemName)
+        console.log(id)
+        // axios.delete('/delete-items/'+id).then(response => {
+        //     let {data} = response;
 
+        // })
         try {
-            service.get("items/delete-item/:id",{}).then(
-                () => {
-                    const newList = getItems.filter((el) => el.itemName !== itemName)
-                    setGetItems(newList);
-                }
-            )
+            // console.log('Are you deleting')
+           const item2Del = await service.delete(`items/delete-items/${id}`)
+           console.log(item2Del)
+            // .then(
+            //     () => {
+            //         const newList = getItems.filter((el) => el.id !== id)
+            //         setGetItems(newList);
+            //     }
+            //)
         } catch (e) {
-            console.log(e)
+            console.log(e.message)
         }
     }
 
@@ -55,14 +67,14 @@ const ItemsList = () => {
                         name={item.name}
                         quantity={item.quantity}
                         notes={item.notes}
-                        ondelete={deleteItemHandler}
+                        onedit={editedDataHandler}
+                        ondelete={() => deleteItemHandler(item.id)}
                     />
                     </div>
                 ))
             }
         </div>
     )
-
 }
 
 export default ItemsList;

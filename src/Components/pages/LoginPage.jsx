@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import fun from "../../assets/images/fun.jpg";
 import {  useState } from "react";
 
@@ -41,7 +41,14 @@ const LoginPage = () => {
         
       });
       
-      
+      //redirect to /account
+      // <Navigate to={'/account'} />
+    
+  }
+
+  const history = useNavigate();
+  const goToHome =()=>{
+    history('/account')
   }
 
   return (
@@ -56,7 +63,7 @@ const LoginPage = () => {
           <img src={fun} alt="" className="max-w-full w-[450px]" />
         </div>
         <div className="flex-1 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-          <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
+          <h2 className="text-gray-900 text-lg font-medium title-font mb-5" onClick={goToHome}>
             Login
           </h2>
           <form onSubmit={handleLoginSubmit}>

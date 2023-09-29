@@ -9,6 +9,7 @@ const ItemCard = (props) => {
 
 
   const itemEditHandler = async() => {
+    // Receive edit data here then send it via props to ItemList
     try {
       const response = await service.patch(`/items/update-item/${props.itemId}`, {...editedItem})
       // console.log('**** New Response ****')
@@ -47,7 +48,6 @@ const ItemCard = (props) => {
     setEditedItem((prev) => ({ ...prev, [name]: value }));
   };
 
-
   if(isEditing){
     return (
       <EditModal
@@ -64,7 +64,6 @@ const ItemCard = (props) => {
        />
     )
   }
-
 
   return (
     <div className="max-h-screen">
