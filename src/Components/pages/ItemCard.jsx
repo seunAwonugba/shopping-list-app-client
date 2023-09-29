@@ -24,7 +24,8 @@ const ItemCard = ({ id, name, quantity, notes, ondelete }) => {
   };
 
   const closeModal = () => {
-    setModalOpen(false);
+    // setModalOpen(false);
+    setIsEditing(false)
   };
 
   if (isEditing) {
