@@ -44,7 +44,7 @@ const ItemsList = () => {
         // })
         try {
             // console.log('Are you deleting')
-           const item2Del = await service.delete(`items/delete-items/${id}`)
+           const item2Del = await service.delete(`items/delete-item/${id}`)
            console.log(item2Del)
             // .then(
             //     () => {
